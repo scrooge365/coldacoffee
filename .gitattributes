@@ -1,0 +1,9 @@
+* text eol=lf
+
+# Binary file
+*.ico binary
+*.png binary
+*.jpg binary
+*.gif binary
+*.xlsx binary diff=exif
+*.pdf binary

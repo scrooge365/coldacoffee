@@ -1,0 +1,18 @@
+{
+  "editor.rulers": [120],
+  "files.trimTrailingWhitespace": true,
+  "editor.formatOnSave": true,
+  "files.eol": "\n",
+  "editor.tabSize": 2,
+  "npm.packageManager": "yarn",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "eslint.packageManager": "yarn",
+  "workbench.colorCustomizations": {
+    "activityBar.background": "#1F2D48",
+    "titleBar.activeBackground": "#2B4065",
+    "titleBar.activeForeground": "#F9FAFC"
+  }
+}
