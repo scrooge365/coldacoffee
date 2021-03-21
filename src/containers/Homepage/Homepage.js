@@ -4,6 +4,8 @@ import Page from '../../components/Page';
 import ErrorPage from '../../pages/404';
 import PropTypes from 'prop-types';
 import HomepageIntroduction from './components/HomePageIntroduction';
+import HomePageAbout from './components/HomePageAbout';
+import HomePageProducts from './components/HomePageProducts';
 
 const HomePage = ({ error }) => {
   if (error) return <ErrorPage error={error} />;
@@ -11,12 +13,15 @@ const HomePage = ({ error }) => {
   return (
     <Page
       pageTitle={'Kolda coffee company'}
-      css={{
+      css={(theme) => ({
         '& > div': { alignItems: 'center', display: 'flex', flexDirection: 'column', width: '100%' },
         width: '100%',
-      }}
+        padding: theme.spacing(0, 1),
+      })}
     >
       <HomepageIntroduction />
+      <HomePageAbout />
+      <HomePageProducts />
     </Page>
   );
 };

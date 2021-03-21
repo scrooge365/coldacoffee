@@ -4,14 +4,24 @@ import { jsx, ClassNames } from '@emotion/react';
 import PropTypes from 'prop-types';
 import React from 'react';
 import logo from '../../../images/logo.webp';
+import { Link, useLocation } from 'react-router-dom';
+import useChangePreferredLocale from '@sprinx/react-globalize/useChangePreferredLocale';
+import CzechFlag from '../../../icons/CzechFlag';
+import EnglishFlag from '../../../icons/EnglishFlag';
+import { Tooltip } from '@material-ui/core';
+import useTranslate from '@sprinx/react-globalize/useTranslate/useTranslate';
 
 const MainLayoutHeader = (props) => {
+  const t = useTranslate();
   const [open, setOpen] = React.useState(false);
 
   return (
     <div
       {...props}
       css={(theme) => ({
+        '@media(min-width: 960px)': {
+          padding: theme.spacing(0, 2),
+        },
         display: 'flex',
         flexBasis: '100%',
         flexGrow: 1,
@@ -24,16 +34,32 @@ const MainLayoutHeader = (props) => {
         zIndex: 10,
         justifyContent: 'center',
         alignItems: 'center',
+        background: 'rgba(255,255,255,.9)',
+        padding: theme.spacing(0, 1),
       })}
     >
       <div
         css={{ width: '100%', maxWidth: 1300, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
       >
-        <div css={{ width: 54, height: 54, display: 'flex', '& > img': { width: '100%', height: 'auto' } }}>
-          <img src={logo} alt='logo' />
+        <div
+          css={{
+            '& > img': { width: '100%', height: 'auto' },
+            '@media(min-width: 600px)': {
+              width: 54,
+              height: 54,
+            },
+            width: 48,
+            height: 48,
+            display: 'flex',
+          }}
+        >
+          <Link to={t('paths/homepage')}>
+            <img src={logo} alt='logo' />
+          </Link>
         </div>
         <HeaderHamburger open={open} onChange={() => setOpen((ps) => !ps)} />
       </div>
+      <MainLayoutHeaderNavigation open={open} onClose={setOpen} />
     </div>
   );
 };
@@ -55,11 +81,11 @@ const HeaderHamburger = ({ onChange: handleChange, open }) => {
               border: 'none',
               background: 'transparent',
               cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
               height: theme.spacing(4),
               width: theme.spacing(4),
-              // position: 'fixed',
-              // top: 20,
-              // right: 20,
               zIndex: 12,
               outline: 'none',
               '&:hover span': {
@@ -112,5 +138,107 @@ HeaderHamburger.propTypes = {
 };
 HeaderHamburger.defaultProps = {
   onChange: undefined,
+  open: false,
+};
+
+const MainLayoutHeaderNavigation = ({ open, onClose: handleClose }) => {
+  const location = useLocation();
+  const t = useTranslate();
+  const changePrefferLocale = useChangePreferredLocale();
+  return (
+    <div
+      css={(theme) => ({
+        display: 'flex',
+        width: open ? '100%' : 0,
+        height: 'calc(100vh - 72px)',
+        background: theme.palette.header.navigation,
+        position: 'fixed',
+        top: 72,
+        left: 0,
+        bottom: 0,
+        transition: 'all .2s ease',
+        overflow: 'hidden',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'column',
+        '& > a': {
+          '&:link, &:visited': {
+            display: 'inline-block',
+            fontSize: 30,
+            padding: '10px 20px',
+            color: '#fff',
+            textDecoration: 'none',
+            textTransform: 'uppercase',
+            backgroundImage: 'linear-gradient(120deg, transparent 0%, transparent 52%, #fff 50%)',
+            backgroundSize: '240%',
+            transition: 'all 0.4s',
+            '@media (max-width: 800px)': {
+              fontSize: 20,
+            },
+          },
+          '&:hover, &:active': {
+            backgroundPosition: '100%',
+            color: theme.palette.text.primary,
+            transform: 'translateX(1rem)',
+          },
+        },
+      })}
+    >
+      <div
+        css={(theme) => ({
+          margin: theme.spacing(4, 0),
+          display: 'flex',
+          alignItems: 'center',
+          '& > a': {
+            margin: theme.spacing(0, 2),
+            color: theme.palette.common.white,
+            fontSize: 24,
+            textDecoration: 'none',
+          },
+          '& svg': {
+            width: 24,
+            height: 24,
+          },
+        })}
+      >
+        <Tooltip title={t('header/cz')}>
+          <Link
+            to='/cs'
+            onClick={() => changePrefferLocale('cs')}
+            css={{ display: location.pathname.startsWith('/cs') ? 'none' : 'flex' }}
+          >
+            <CzechFlag />
+          </Link>
+        </Tooltip>
+        <Tooltip title={t('header/en')}>
+          <Link
+            to='/en'
+            onClick={() => changePrefferLocale('en')}
+            css={{ display: location.pathname.startsWith('/en') ? 'none' : 'flex' }}
+          >
+            <EnglishFlag />
+          </Link>
+        </Tooltip>
+      </div>
+      <Link to='/' onClick={() => handleClose(false)}>
+        Contact
+      </Link>
+      <Link to='/' onClick={() => handleClose(false)}>
+        Contact
+      </Link>
+      <Link to='/' onClick={() => handleClose(false)}>
+        Contact
+      </Link>
+      <Link to='/' onClick={() => handleClose(false)}>
+        Contact
+      </Link>
+    </div>
+  );
+};
+MainLayoutHeaderNavigation.propTypes = {
+  onClose: PropTypes.func.isRequired,
+  open: PropTypes.bool,
+};
+MainLayoutHeaderNavigation.defaultProps = {
   open: false,
 };

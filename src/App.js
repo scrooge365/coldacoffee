@@ -2,10 +2,8 @@
 /** @jsxFrag React.Fragment */
 import React from 'react';
 import { Root, Routes } from 'react-static';
-import { Link } from 'react-router-dom';
 import { ClassNames, css, Global, jsx, ThemeProvider } from '@emotion/react';
 import AppContainer from '@sprinx/react-mui-layout/AppContainer';
-import MuiComponentsProvider from '@sprinx/react-mui-components/MuiComponentsProvider';
 import AppGlobalize from './AppGlobalize';
 import appTheme from './theme';
 import AppLayout from './layouts/MainLayout';
@@ -17,7 +15,7 @@ import CalibriRegular from './fonts/Calibri-regular.ttf';
 export default function App() {
   return (
     <AppContainer
-      defaultTitle={'Autoservis a pneuservis Libeznice'}
+      defaultTitle={'Colda coffee company'}
       RootComponent={Root}
       ErrorComponent={() => <h1>Something went wrong.</h1>}
     >
@@ -66,15 +64,13 @@ export default function App() {
               />
 
               <AppGlobalize supportedLanguages={['cs', 'en']}>
-                <MuiComponentsProvider linkComponent={Link}>
-                  <div>
-                    <React.Suspense fallback={<Loader />}>
-                      <AppLayout>
-                        <Routes />
-                      </AppLayout>
-                    </React.Suspense>
-                  </div>
-                </MuiComponentsProvider>
+                <div>
+                  <React.Suspense fallback={<Loader />}>
+                    <AppLayout>
+                      <Routes />
+                    </AppLayout>
+                  </React.Suspense>
+                </div>
               </AppGlobalize>
             </>
           )}

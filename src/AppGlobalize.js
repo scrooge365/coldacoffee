@@ -8,7 +8,7 @@ const CldrLocaleCs = React.lazy(() => import('@sprinx/react-globalize/CldrLocale
 const MessagesEn = React.lazy(() => import('./MessagesEn'));
 const MessagesCs = React.lazy(() => import('./MessagesCs'));
 
-function AppGlobalize({ children, onPreferredLanguageChanged, supportedLanguages }) {
+function AppGlobalize({ children, supportedLanguages }) {
   const location = useLocation();
   return (
     <GlobalizeProvider
@@ -16,7 +16,7 @@ function AppGlobalize({ children, onPreferredLanguageChanged, supportedLanguages
       messages={{ en: MessagesEn, cs: MessagesCs }}
       defaultLocale={location.pathname.startsWith('/en') ? 'en' : 'cs'}
       supportedLocales={supportedLanguages}
-      onPreferredLanguageChanged={onPreferredLanguageChanged}
+      dontResolveLocale
     >
       {children}
     </GlobalizeProvider>
@@ -25,8 +25,6 @@ function AppGlobalize({ children, onPreferredLanguageChanged, supportedLanguages
 
 AppGlobalize.propTypes = {
   children: PropTypes.node.isRequired,
-  onPreferredLanguageChanged: PropTypes.func,
-
   supportedLanguages: PropTypes.arrayOf(
     PropTypes.oneOfType([
       PropTypes.string,
@@ -37,8 +35,6 @@ AppGlobalize.propTypes = {
   ).isRequired,
 };
 
-AppGlobalize.defaultProps = {
-  onPreferredLanguageChanged: undefined,
-};
+AppGlobalize.defaultProps = {};
 
 export default AppGlobalize;
