@@ -1,3 +1,25 @@
-# React-Static - Basic Template
+# How to run app
 
-To use this template, run `react-static create` and use the `basic` template.
+## You have to install dependencies
+
+```sh
+
+yarn install
+
+```
+
+## Then run app
+
+```sh
+
+yarn start
+
+```
+
+## Do you want to build project?
+
+```sh
+
+yarn build
+
+```
