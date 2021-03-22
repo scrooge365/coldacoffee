@@ -1,11 +1,12 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/react';
 import Page from '../../components/Page';
-import HomepageIntroduction from './components/HomePageIntroduction';
-import HomePageAbout from './components/HomePageAbout';
-import HomePageProducts from './components/HomePageProducts';
+import ErrorPage from '../../pages/404';
+import PropTypes from 'prop-types';
 
-const HomePage = () => {
+const Contact = ({ error }) => {
+  if (error) return <ErrorPage error={error} />;
+
   return (
     <Page
       pageTitle={'Kolda coffee company'}
@@ -15,15 +16,15 @@ const HomePage = () => {
         padding: theme.spacing(0, 1),
       })}
     >
-      <HomepageIntroduction />
-      <HomePageAbout />
-      <HomePageProducts />
+      Contact
     </Page>
   );
 };
 
-export default HomePage;
+export default Contact;
 
-HomePage.propTypes = {};
+Contact.propTypes = {
+  error: PropTypes.any, // eslint-disable-line
+};
 
-HomePage.defaultProps = {};
+Contact.defaultProps = {};

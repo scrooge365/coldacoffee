@@ -1,13 +1,13 @@
 // import path from 'path';
 import React from 'react';
-import messages from './src/i18n';
+import { messages } from './src/i18n';
 
 const language = ['cs-CS', 'en-EN'];
 
 const getPath = (page) => ({
   pathUrls: {
-    cs: `/${messages.cs.paths[page]}`,
-    en: `/${messages.en.paths[page]}`,
+    cs: `/${messages.cs[`paths.${page}`]}`,
+    en: `/${messages.en[`paths.${page}`]}`,
   },
 });
 
@@ -17,6 +17,11 @@ const langPaths = async (lang) => {
       path: `${lang}/`,
       template: 'src/containers/Homepage',
       ...getPath('homepage'),
+    },
+    {
+      path: `${messages[lang]['paths.contact']}`,
+      template: 'src/containers/Contact',
+      ...getPath('contact'),
     },
     {
       path: `/`,
@@ -31,7 +36,7 @@ const langPaths = async (lang) => {
 
 export default {
   getSiteData: async () => ({
-    title: 'React Static',
+    title: 'Kolda Coffee Company',
   }),
   getRoutes: async () =>
     Promise.all(language.map((culture) => langPaths(culture.substring(0, 2), culture))).then((paths) =>
@@ -47,12 +52,13 @@ export default {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <meta name='application-name' content='Kolda coffee company' />
         <meta name='description' content='' />
-        <meta name='keywords' content='Kolda coffee company' />
+        <meta name='keywords' content='Kolda coffee company, coffee, cascara, kafe' />
       </Head>
       <Body>{children}</Body>
     </Html>
   ),
   // siteRoot: 'http://kolda.coffee',
+  maxThreads: 2,
   plugins: [
     [
       require.resolve('react-static-plugin-source-filesystem'),
@@ -61,5 +67,6 @@ export default {
       },
     ],
     'react-static-plugin-react-router',
+    // 'react-static-plugin-sitemap',
   ],
 };

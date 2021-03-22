@@ -1,30 +1,35 @@
 /** @jsx jsx */
 /** @jsxFrag React.Fragment */
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Root, Routes } from 'react-static';
 import { ClassNames, css, Global, jsx, ThemeProvider } from '@emotion/react';
 import AppContainer from '@sprinx/react-mui-layout/AppContainer';
-import AppGlobalize from './AppGlobalize';
 import appTheme from './theme';
 import AppLayout from './layouts/MainLayout';
 import Loader from './components/Loader';
 import CalibriBold from './fonts/Calibri-bold.ttf';
 import CalibriLight from './fonts/Calibri-light.ttf';
 import CalibriRegular from './fonts/Calibri-regular.ttf';
+import { IntlProvider } from 'react-intl';
+import { messagesIntl } from './i18n';
 
 export default function App() {
+  const [locale, setLocale] = React.useState('cs');
+
+  React.useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setLocale(window.location.pathname.startsWith('/en') ? 'en' : 'cs');
+    }
+  }, []);
+
   return (
-    <AppContainer
-      defaultTitle={'Colda coffee company'}
-      RootComponent={Root}
-      ErrorComponent={() => <h1>Something went wrong.</h1>}
-    >
-      <ThemeProvider theme={appTheme}>
-        <ClassNames>
-          {({ theme }) => (
-            <>
-              <Global
-                styles={css`
+    <AppProvider>
+      <ClassNames>
+        {({ theme }) => (
+          <>
+            <Global
+              styles={css`
                   *, html {
                     margin: 0;
                     padding: 0;
@@ -61,21 +66,35 @@ export default function App() {
                     }
                   }
                 `}
-              />
-
-              <AppGlobalize supportedLanguages={['cs', 'en']}>
-                <div>
-                  <React.Suspense fallback={<Loader />}>
-                    <AppLayout>
-                      <Routes />
-                    </AppLayout>
-                  </React.Suspense>
-                </div>
-              </AppGlobalize>
-            </>
-          )}
-        </ClassNames>
-      </ThemeProvider>
-    </AppContainer>
+            />
+            <IntlProvider locale={locale} messages={messagesIntl[locale]}>
+              <div>
+                <React.Suspense fallback={<Loader />}>
+                  <AppLayout onChangeLocale={setLocale}>
+                    <Routes />
+                  </AppLayout>
+                </React.Suspense>
+              </div>
+            </IntlProvider>
+          </>
+        )}
+      </ClassNames>
+    </AppProvider>
   );
 }
+
+const AppProvider = ({ children }) => {
+  return (
+    <AppContainer
+      defaultTitle={'Colda coffee company'}
+      RootComponent={Root}
+      ErrorComponent={() => <h1>Something went wrong.</h1>}
+    >
+      <ThemeProvider theme={appTheme}>{children}</ThemeProvider>
+    </AppContainer>
+  );
+};
+
+AppProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+};

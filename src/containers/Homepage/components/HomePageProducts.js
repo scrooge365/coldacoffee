@@ -2,46 +2,23 @@
 // import React from 'react';
 import PropTypes from 'prop-types';
 import { ClassNames, jsx } from '@emotion/react';
-import HtmlParser from 'react-html-parser';
+// import HtmlParser from 'react-html-parser';
 import Container from '../../../components/Container';
-// import useMediaQuery from '../../../hooks/useMediaQuery';
-import useTranslate from '@sprinx/react-globalize/useTranslate';
+import { useIntl } from 'react-intl';
 import coffee from '../../../images/coffee.webp';
 import cascara from '../../../images/cascara.webp';
+import Zoom from 'react-reveal/Zoom';
+import HtmlParser from 'react-html-parser';
 
 const products = [
   {
-    title: [
-      { language: 'en', text: 'Coffee' },
-      { language: 'cs', text: 'Kafe' },
-    ],
-    description: [
-      {
-        language: 'en',
-        text: `<p>Harvest more than 20 tons</p><p>Producing only one species - Arabica</p><p>Two types of three plant - „Compact“ and „Nailon“</p><p>Two types coffee processing - "Washed or fully washed" and "Natural"</p>`,
-      },
-      {
-        language: 'cs',
-        text: `<p>Harvest more than 20 tons</p><p>Producing only one species - Arabica</p><p>Two types of three plant - „Compact“ and „Nailon“</p><p>Two types coffee processing - "Washed or fully washed" and "Natural"</p>`,
-      },
-    ],
+    title: 'products.coffee.title',
+    description: 'products.coffee.description',
     image: 'coffee',
   },
   {
-    title: [
-      { language: 'en', text: 'Cascara - "Coffee cherry' },
-      { language: 'cs', text: 'Kaskara - "Kávová třešeň' },
-    ],
-    description: [
-      {
-        language: 'cs',
-        text: `<p>Is the actual flesh of the coffee cherry, that has been dried and is tasty to drink as an infusion. </p><p>Coffee is a cherry about the size of a cranberry. </p><p>This is the flesh that surrounds the coffee seeds which is normally a waste product or is sometimes used as a blender in fertilizer. </p><p>Historically people would drink the coffee pulp as an infusion, and it still occurs in Yemen and some other coffee producing countries around the world.</p>`,
-      },
-      {
-        language: 'en',
-        text: `<p>Is the actual flesh of the coffee cherry, that has been dried and is tasty to drink as an infusion. </p><p>Coffee is a cherry about the size of a cranberry. </p><p>This is the flesh that surrounds the coffee seeds which is normally a waste product or is sometimes used as a blender in fertilizer. </p><p>Historically people would drink the coffee pulp as an infusion, and it still occurs in Yemen and some other coffee producing countries around the world.</p>`,
-      },
-    ],
+    title: 'products.cascara.title',
+    description: 'products.cascara.description',
     image: 'cascara',
   },
 ];
@@ -52,7 +29,7 @@ const imageMap = {
 };
 
 function HomePageAbout() {
-  const t = useTranslate();
+  const intl = useIntl();
   return (
     <Container>
       <ClassNames>
@@ -68,7 +45,9 @@ function HomePageAbout() {
               width: '100%',
             }}
           >
-            <h2 css={{ ...theme.typography.h2, marginBottom: theme.spacing(2) }}>{t('products/title')}</h2>
+            <h2 css={{ ...theme.typography.h2, marginBottom: theme.spacing(2) }}>
+              {intl.formatMessage({ id: 'products.title', defaultMessage: 'Products' })}
+            </h2>
             {(products || []).map((product, idx) => (
               <HomePageProductsCard product={product} key={idx.toString()} />
             ))}
@@ -85,7 +64,7 @@ HomePageAbout.defaultProps = {};
 export default HomePageAbout;
 
 const HomePageProductsCard = ({ product }) => {
-  const t = useTranslate();
+  const intl = useIntl();
   return (
     <ClassNames>
       {({ theme }) => (
@@ -99,7 +78,6 @@ const HomePageProductsCard = ({ product }) => {
             },
             '@media(min-width: 600px)': {
               '& > div': { width: '50%' },
-
               alignItems: 'center',
               justifyContent: 'center',
             },
@@ -107,35 +85,52 @@ const HomePageProductsCard = ({ product }) => {
             display: 'flex',
             flexDirection: 'column',
             padding: theme.spacing(2, 0),
-            alignItems: 'stretch',
+            alignItems: 'center',
             width: '100%',
           }}
         >
           <div
             css={{
-              '& > img': { width: '100%' },
+              '& img': { width: '100%' },
               '@media(min-width: 600px)': {
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
-                '& > img': { width: 300 },
+                '& img': { width: 300 },
               },
               '@media(min-width: 960px)': {
-                '& > img': { width: 'auto' },
+                '& img': { width: 'auto' },
               },
               width: 150,
               flexShrink: 0,
             }}
           >
-            <img src={imageMap[product.image]} alt={product.title} />
+            <Zoom>
+              <img src={imageMap[product?.image]} alt={product.title} />
+            </Zoom>
           </div>
           <div
-            css={{ ...theme.typography.caption, display: 'flex', flexDirection: 'column', flexGrow: 1, maxWidth: 550 }}
+            css={{
+              ...theme.typography.caption,
+              display: 'flex',
+              flexDirection: 'column',
+              flexGrow: 1,
+              maxWidth: 550,
+            }}
           >
-            <h3 css={{ ...theme.typography.h3, marginBottom: theme.spacing(1) }}>
-              {t(product.title, { acceptString: true })}
-            </h3>
-            {HtmlParser(t(product.description, { acceptString: true }))}
+            <Zoom>
+              <h3
+                css={{
+                  '@media(min-width: 425px)': { textAlign: 'left' },
+                  ...theme.typography.h3,
+                  marginBottom: theme.spacing(1),
+                  textAlign: 'center',
+                }}
+              >
+                {product.title && intl.formatMessage({ id: product.title, defaultMessage: '' })}
+              </h3>
+              {product.description && HtmlParser(intl.formatMessage({ id: product.description, defaultMessage: '' }))}
+            </Zoom>
           </div>
         </div>
       )}

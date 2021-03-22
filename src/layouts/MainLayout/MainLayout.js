@@ -4,10 +4,10 @@ import MainLayoutFooter from './components/MainLayoutFooter';
 import MainLayoutHeader from './components/MainLayoutHeader';
 import PropTypes from 'prop-types';
 
-const MainLayout = ({ children }) => {
+const MainLayout = ({ children, onChangeLocale: handleChangeLocale }) => {
   return (
     <div css={{ alignItems: 'stretch', display: 'flex', flexDirection: 'column', flexGrow: 1, minHeight: '100vh' }}>
-      <MainLayoutHeader />
+      <MainLayoutHeader onChangeLocale={handleChangeLocale} />
       <main
         css={(theme) => ({
           alignItems: 'center',
@@ -30,4 +30,5 @@ export default MainLayout;
 
 MainLayout.propTypes = {
   children: PropTypes.node.isRequired,
+  onChangeLocale: PropTypes.func.isRequired,
 };

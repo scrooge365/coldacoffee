@@ -7,13 +7,13 @@ import headlineImage from '../../../images/coffee-cup-header.webp';
 import headlineMobileImage from '../../../images/coffee-cup-header-mobile.webp';
 import useMediaQuery from '../../../hooks/useMediaQuery';
 import ButtonLink from '../../../components/ButtonLink';
-import useTranslate from '@sprinx/react-globalize/useTranslate';
+import { useIntl } from 'react-intl';
 import Pulse from 'react-reveal/Pulse';
 import Fade from 'react-reveal/Fade';
 
 function HomepageIntroduction() {
-  const desktop = useMediaQuery('@media(min-width:960px)');
-  const t = useTranslate();
+  const desktop = useMediaQuery('@media(min-width:960px)') || false;
+  const intl = useIntl();
   return (
     <Container>
       <ClassNames>
@@ -35,15 +35,27 @@ function HomepageIntroduction() {
           >
             <div css={{ display: 'flex', flexDirection: 'column', '& > div:nth-of-type(2)': { alignSelf: 'center' } }}>
               <Pulse>
-                <h1 css={{ ...theme.typography.h1 }}>{t('homepage/introduction/title')}</h1>
+                <h1 css={{ ...theme.typography.h1 }}>
+                  {intl.formatMessage({
+                    id: 'homepage.introduction.title',
+                    defaultMessage: 'Kolda coffee producing 100% bio coffee products to all over the world',
+                  })}
+                </h1>
               </Pulse>
               <Fade bottom timeout={2000} delay={1000}>
-                <ButtonLink css={{ alignSelf: 'center' }} to={t('paths/contact')}>
-                  {t('homepage/introduction/button')}
+                <ButtonLink
+                  css={{ alignSelf: 'center' }}
+                  to={intl.formatMessage({ id: 'paths.contact', defaultMessage: '/en/contact' })}
+                >
+                  {intl.formatMessage({ id: 'homepage.introduction.button', defaultMessage: 'contact us' })}
                 </ButtonLink>
               </Fade>
             </div>
-            <img src={desktop ? headlineImage : headlineMobileImage} alt='headline' />
+            <picture>
+              <source media='(min-width:960px)' srcSet={headlineImage} />
+              <source media='(min-width:320px)' srcSet={headlineMobileImage} />
+              <img src={desktop ? headlineImage : headlineMobileImage} alt='headline' />
+            </picture>
           </div>
         )}
       </ClassNames>

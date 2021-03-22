@@ -5,19 +5,17 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import logo from '../../../images/logo.webp';
 import { Link, useLocation } from 'react-router-dom';
-import useChangePreferredLocale from '@sprinx/react-globalize/useChangePreferredLocale';
 import CzechFlag from '../../../icons/CzechFlag';
 import EnglishFlag from '../../../icons/EnglishFlag';
 import { Tooltip } from '@material-ui/core';
-import useTranslate from '@sprinx/react-globalize/useTranslate/useTranslate';
+import { useIntl } from 'react-intl';
 
-const MainLayoutHeader = (props) => {
-  const t = useTranslate();
+const MainLayoutHeader = ({ onChangeLocale: handleChangeLocale }) => {
+  const intl = useIntl();
   const [open, setOpen] = React.useState(false);
 
   return (
     <div
-      {...props}
       css={(theme) => ({
         '@media(min-width: 960px)': {
           padding: theme.spacing(0, 2),
@@ -53,18 +51,22 @@ const MainLayoutHeader = (props) => {
             display: 'flex',
           }}
         >
-          <Link to={t('paths/homepage')}>
+          <Link to={intl.formatMessage({ id: 'paths.homepage', defaultMessage: '/en' })} onClick={() => setOpen(false)}>
             <img src={logo} alt='logo' />
           </Link>
         </div>
         <HeaderHamburger open={open} onChange={() => setOpen((ps) => !ps)} />
       </div>
-      <MainLayoutHeaderNavigation open={open} onClose={setOpen} />
+      <MainLayoutHeaderNavigation open={open} onClose={setOpen} onChangeLocale={handleChangeLocale} />
     </div>
   );
 };
 
 MainLayoutHeader.displayName = 'MainLayoutHeader';
+
+MainLayoutHeader.propTypes = {
+  onChangeLocale: PropTypes.func.isRequired,
+};
 
 export default MainLayoutHeader;
 
@@ -141,16 +143,23 @@ HeaderHamburger.defaultProps = {
   open: false,
 };
 
-const MainLayoutHeaderNavigation = ({ open, onClose: handleClose }) => {
+const MainLayoutHeaderNavigation = ({ open, onClose: handleClose, onChangeLocale }) => {
   const location = useLocation();
-  const t = useTranslate();
-  const changePrefferLocale = useChangePreferredLocale();
+  const intl = useIntl();
+
+  const handleChangeLocale = React.useCallback(
+    (nextLocale) => () => {
+      onChangeLocale(nextLocale);
+      handleClose(false);
+    },
+    [],
+  );
+
   return (
     <div
       css={(theme) => ({
         display: 'flex',
         width: open ? '100%' : 0,
-        height: 'calc(100vh - 72px)',
         background: theme.palette.header.navigation,
         position: 'fixed',
         top: 72,
@@ -158,7 +167,7 @@ const MainLayoutHeaderNavigation = ({ open, onClose: handleClose }) => {
         bottom: 0,
         transition: 'all .2s ease',
         overflow: 'hidden',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         alignItems: 'center',
         flexDirection: 'column',
         '& > a': {
@@ -201,26 +210,29 @@ const MainLayoutHeaderNavigation = ({ open, onClose: handleClose }) => {
           },
         })}
       >
-        <Tooltip title={t('header/cz')}>
+        <Tooltip title={intl.formatMessage({ id: 'header.cs', defaultMessage: 'Czech' })}>
           <Link
             to='/cs'
-            onClick={() => changePrefferLocale('cs')}
+            onClick={handleChangeLocale('cs')}
             css={{ display: location.pathname.startsWith('/cs') ? 'none' : 'flex' }}
           >
             <CzechFlag />
           </Link>
         </Tooltip>
-        <Tooltip title={t('header/en')}>
+        <Tooltip title={intl.formatMessage({ id: 'header.en', defaultMessage: 'English' })}>
           <Link
             to='/en'
-            onClick={() => changePrefferLocale('en')}
+            onClick={handleChangeLocale('en')}
             css={{ display: location.pathname.startsWith('/en') ? 'none' : 'flex' }}
           >
             <EnglishFlag />
           </Link>
         </Tooltip>
       </div>
-      <Link to='/' onClick={() => handleClose(false)}>
+      <Link
+        to={intl.formatMessage({ id: 'paths.contact', defaultMessage: '/en/contact' })}
+        onClick={() => handleClose(false)}
+      >
         Contact
       </Link>
       <Link to='/' onClick={() => handleClose(false)}>
@@ -235,7 +247,9 @@ const MainLayoutHeaderNavigation = ({ open, onClose: handleClose }) => {
     </div>
   );
 };
+
 MainLayoutHeaderNavigation.propTypes = {
+  onChangeLocale: PropTypes.func.isRequired,
   onClose: PropTypes.func.isRequired,
   open: PropTypes.bool,
 };

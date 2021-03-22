@@ -6,11 +6,12 @@ import Container from '../../../components/Container';
 import useMediaQuery from '../../../hooks/useMediaQuery';
 import coffeecups from '../../../images/cofee-cups.webp';
 import coffeecupsMobil from '../../../images/cofee-cups-mobile.webp';
-import useTranslate from '@sprinx/react-globalize/useTranslate';
+import { useIntl } from 'react-intl';
+import Bounce from 'react-reveal/Bounce';
 
 function HomePageAbout() {
-  const desktop = useMediaQuery('@media(min-width:600px)');
-  const t = useTranslate();
+  const desktop = useMediaQuery('@media(min-width:600px)') || false;
+  const intl = useIntl();
   return (
     <Container>
       <ClassNames>
@@ -25,8 +26,17 @@ function HomePageAbout() {
               padding: theme.spacing(4, 0),
             }}
           >
-            <h2 css={{ ...theme.typography.h2, marginBottom: theme.spacing(2) }}>{t('homepage/about/title')}</h2>
-            <p css={{ textAlign: 'center' }}>{t('homepage/about/description')}</p>
+            <h2 css={{ ...theme.typography.h2, marginBottom: theme.spacing(2) }}>
+              {intl.formatMessage({ id: 'homepage.about.title', defaultMessage: 'About us' })}
+            </h2>
+            <Bounce bottom>
+              <p css={{ textAlign: 'center' }}>
+                {intl.formatMessage({
+                  id: 'homepage.about.description',
+                  defaultMessage: `In southern Tanzania, we have been producing and growing coffee since 2012. We currently operate two farms, Hezya and Mwaya.`,
+                })}
+              </p>
+            </Bounce>
             <div css={{ '& > img': { width: '100%' }, width: '100%' }}>
               <img src={desktop ? coffeecups : coffeecupsMobil} alt='headline' />
             </div>
