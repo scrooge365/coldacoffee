@@ -24,7 +24,7 @@ const theme = {
     },
   },
   palette: {
-    background: '#FFFFFF',
+    background: '#FFFFFF !important',
     common: {
       black: '#000',
       white: '#fff',

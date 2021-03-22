@@ -1,6 +1,4 @@
 /** @jsx jsx */
-// import React from 'react';
-// import PropTypes from 'prop-types';
 import { ClassNames, jsx } from '@emotion/react';
 import Container from '../../../components/Container';
 import useMediaQuery from '../../../hooks/useMediaQuery';

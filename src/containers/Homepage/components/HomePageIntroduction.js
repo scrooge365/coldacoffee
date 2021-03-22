@@ -1,6 +1,4 @@
 /** @jsx jsx */
-// import React from 'react';
-// import PropTypes from 'prop-types';
 import { ClassNames, jsx } from '@emotion/react';
 import Container from '../../../components/Container';
 import headlineImage from '../../../images/coffee-cup-header.webp';
@@ -20,11 +18,11 @@ function HomepageIntroduction() {
         {({ theme }) => (
           <div
             css={{
-              '& > img': {
+              '& img': {
                 width: 150,
               },
               '@media(min-width: 600px)': {
-                '& > img': {
+                '& img': {
                   width: 'auto',
                 },
               },
@@ -33,7 +31,13 @@ function HomepageIntroduction() {
               padding: theme.spacing(4, 0),
             }}
           >
-            <div css={{ display: 'flex', flexDirection: 'column', '& > div:nth-of-type(2)': { alignSelf: 'center' } }}>
+            <div
+              css={{
+                '& > div:nth-of-type(2)': { alignSelf: 'center' },
+                display: 'flex',
+                flexDirection: 'column',
+              }}
+            >
               <Pulse>
                 <h1 css={{ ...theme.typography.h1 }}>
                   {intl.formatMessage({

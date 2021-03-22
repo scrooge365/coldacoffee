@@ -1,12 +1,12 @@
 /** @jsx jsx */
-// import React from 'react';
 import PropTypes from 'prop-types';
 import { ClassNames, jsx } from '@emotion/react';
-// import HtmlParser from 'react-html-parser';
 import Container from '../../../components/Container';
 import { useIntl } from 'react-intl';
 import coffee from '../../../images/coffee.webp';
+import coffeeSmall from '../../../images/coffeeSmall.webp';
 import cascara from '../../../images/cascara.webp';
+import cascaraSmall from '../../../images/cascaraSmall.webp';
 import Zoom from 'react-reveal/Zoom';
 import HtmlParser from 'react-html-parser';
 
@@ -15,17 +15,21 @@ const products = [
     title: 'products.coffee.title',
     description: 'products.coffee.description',
     image: 'coffee',
+    imageSmall: 'coffeeSmall',
   },
   {
     title: 'products.cascara.title',
     description: 'products.cascara.description',
     image: 'cascara',
+    imageSmall: 'cascaraSmall',
   },
 ];
 
 const imageMap = {
   cascara,
   coffee,
+  coffeeSmall,
+  cascaraSmall,
 };
 
 function HomePageAbout() {
@@ -106,7 +110,11 @@ const HomePageProductsCard = ({ product }) => {
             }}
           >
             <Zoom>
-              <img src={imageMap[product?.image]} alt={product.title} />
+              <picture>
+                <source media='(min-width:500px)' srcSet={imageMap[product?.image]} />
+                <source media='(min-width:0px)' srcSet={imageMap[product?.imageSmall]} />
+                <img src={imageMap[product?.image]} alt={product.title} />
+              </picture>
             </Zoom>
           </div>
           <div

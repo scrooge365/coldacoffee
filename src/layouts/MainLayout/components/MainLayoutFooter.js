@@ -37,10 +37,15 @@ const MainLayoutFooter = () => {
                 </MainLayoutFooterCard>
                 <MainLayoutFooterCard title={'Follow us'}>
                   <div css={{ display: 'flex' }}>
-                    <IconButton href='https://www.facebook.com/koldacoffee' target='_blank'>
+                    <IconButton
+                      href='https://www.facebook.com/koldacoffee'
+                      rel='noreferrer'
+                      target='_blank'
+                      aria-label='facebook'
+                    >
                       <FacebookIcon />
                     </IconButton>
-                    {/* <IconButton>
+                    {/* <IconButton aria-label='instagram' rel='noreferrer' target='_blank'>
                       <InstagramIcon />
                     </IconButton>
                      <IconButton>
