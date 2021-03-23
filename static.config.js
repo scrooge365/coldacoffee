@@ -51,7 +51,7 @@ export default {
         <link rel='icon' href='/favicon.ico' />
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <meta name='application-name' content='Kolda coffee company' />
-        <meta name='description' content='' />
+        <meta name='description' content='Kolda coffee producing 100% bio coffee products to all over the world.' />
         <meta name='keywords' content='Kolda coffee company, coffee, cascara, kafe' />
       </Head>
       <Body>{children}</Body>

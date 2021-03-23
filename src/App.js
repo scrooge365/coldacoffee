@@ -2,7 +2,7 @@
 /** @jsxFrag React.Fragment */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Root, Routes } from 'react-static';
+import { Root, Routes, useLocation } from 'react-static';
 import { ClassNames, css, Global, jsx, ThemeProvider } from '@emotion/react';
 import AppContainer from '@sprinx/react-mui-layout/AppContainer';
 import appTheme from './theme';
@@ -16,12 +16,15 @@ import { messagesIntl } from './i18n';
 
 export default function App() {
   const [locale, setLocale] = React.useState('cs');
+  const location = useLocation();
+  const supportedLocale = ['en', 'cs'];
 
   React.useEffect(() => {
     if (typeof window !== 'undefined') {
-      setLocale(window.location.pathname.startsWith('/en') ? 'en' : 'cs');
+      const nextLocale = supportedLocale.find((i) => window?.location?.pathname.slice(1).startsWith(i));
+      setLocale((oldLocale) => nextLocale || oldLocale);
     }
-  }, []);
+  }, [location?.pathname]);
 
   return (
     <AppProvider>
@@ -70,7 +73,7 @@ export default function App() {
             <IntlProvider locale={locale} messages={messagesIntl[locale]}>
               <div>
                 <React.Suspense fallback={<Loader />}>
-                  <AppLayout onChangeLocale={setLocale}>
+                  <AppLayout>
                     <Routes />
                   </AppLayout>
                 </React.Suspense>

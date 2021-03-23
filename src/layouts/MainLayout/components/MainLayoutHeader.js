@@ -10,7 +10,7 @@ import EnglishFlag from '../../../icons/EnglishFlag';
 import { Tooltip } from '@material-ui/core';
 import { useIntl } from 'react-intl';
 
-const MainLayoutHeader = ({ onChangeLocale: handleChangeLocale }) => {
+const MainLayoutHeader = () => {
   const intl = useIntl();
   const [open, setOpen] = React.useState(false);
 
@@ -57,16 +57,12 @@ const MainLayoutHeader = ({ onChangeLocale: handleChangeLocale }) => {
         </div>
         <HeaderHamburger open={open} onChange={() => setOpen((ps) => !ps)} />
       </div>
-      <MainLayoutHeaderNavigation open={open} onClose={setOpen} onChangeLocale={handleChangeLocale} />
+      <MainLayoutHeaderNavigation open={open} onClose={setOpen} />
     </div>
   );
 };
 
 MainLayoutHeader.displayName = 'MainLayoutHeader';
-
-MainLayoutHeader.propTypes = {
-  onChangeLocale: PropTypes.func.isRequired,
-};
 
 export default MainLayoutHeader;
 
@@ -143,17 +139,9 @@ HeaderHamburger.defaultProps = {
   open: false,
 };
 
-const MainLayoutHeaderNavigation = ({ open, onClose: handleClose, onChangeLocale }) => {
+const MainLayoutHeaderNavigation = ({ open, onClose: handleClose }) => {
   const location = useLocation();
   const intl = useIntl();
-
-  const handleChangeLocale = React.useCallback(
-    (nextLocale) => () => {
-      onChangeLocale(nextLocale);
-      handleClose(false);
-    },
-    [],
-  );
 
   return (
     <div
@@ -210,24 +198,20 @@ const MainLayoutHeaderNavigation = ({ open, onClose: handleClose, onChangeLocale
           },
         })}
       >
-        <Tooltip title={intl.formatMessage({ id: 'header.cs', defaultMessage: 'Czech' })}>
-          <Link
-            to='/cs'
-            onClick={handleChangeLocale('cs')}
-            css={{ display: location.pathname.startsWith('/cs') ? 'none' : 'flex' }}
-          >
-            <CzechFlag />
-          </Link>
-        </Tooltip>
-        <Tooltip title={intl.formatMessage({ id: 'header.en', defaultMessage: 'English' })}>
-          <Link
-            to='/en'
-            onClick={handleChangeLocale('en')}
-            css={{ display: location.pathname.startsWith('/en') ? 'none' : 'flex' }}
-          >
-            <EnglishFlag />
-          </Link>
-        </Tooltip>
+        {!location.pathname.startsWith('/cs') && (
+          <Tooltip title={intl.formatMessage({ id: 'header.cs', defaultMessage: 'Czech' })}>
+            <Link to='/cs' onClick={() => handleClose(false)}>
+              <CzechFlag />
+            </Link>
+          </Tooltip>
+        )}
+        {!location.pathname.startsWith('/en') && (
+          <Tooltip title={intl.formatMessage({ id: 'header.en', defaultMessage: 'English' })}>
+            <Link to='/en' onClick={() => handleClose(false)}>
+              <EnglishFlag />
+            </Link>
+          </Tooltip>
+        )}
       </div>
       <Link
         to={intl.formatMessage({ id: 'paths.contact', defaultMessage: '/en/contact' })}
@@ -249,7 +233,6 @@ const MainLayoutHeaderNavigation = ({ open, onClose: handleClose, onChangeLocale
 };
 
 MainLayoutHeaderNavigation.propTypes = {
-  onChangeLocale: PropTypes.func.isRequired,
   onClose: PropTypes.func.isRequired,
   open: PropTypes.bool,
 };
