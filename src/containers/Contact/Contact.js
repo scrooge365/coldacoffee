@@ -8,6 +8,8 @@ import kafe from '../../images/kafee.webp';
 import coffeList from '../../images/coffee-list.webp';
 import Europe from '../../icons/Europe';
 import { useIntl } from 'react-intl';
+import Zoom from 'react-reveal/Zoom';
+import Pulse from 'react-reveal/Pulse';
 
 const Contact = ({ error }) => {
   const intl = useIntl();
@@ -81,10 +83,12 @@ const Contact = ({ error }) => {
                   textAlign: 'left',
                 }}
               >
-                {intl.formatMessage({
-                  id: 'contact.title',
-                  defaultMessage: `Kontaktujte nás, máme zastoupení v několika zemích Evropy`,
-                })}
+                <Pulse>
+                  {intl.formatMessage({
+                    id: 'contact.title',
+                    defaultMessage: `Kontaktujte nás, máme zastoupení v několika zemích Evropy`,
+                  })}
+                </Pulse>
               </div>
               <ContactInfoContact>
                 <p>
@@ -176,30 +180,32 @@ Contact.defaultProps = {};
 
 const ContactInfoContact = ({ children, className }) => {
   return (
-    <ClassNames>
-      {({ theme, css, cx }) => (
-        <div
-          css={cx(
-            css({
-              ...theme.typography.body1,
-              '& > a': { color: theme.palette.text.primary, textDecoration: 'none' },
-              '& > a:hover': { textDecoration: 'underline' },
-              '& > p': { color: theme.palette.primary.main, fontWeight: theme.typography.fontWeightMedium },
-              '@media(min-width: 425px)': { fontSize: 16, lineHeight: '18px' },
-              '@media(min-width: 600px)': { fontSize: 18, lineHeight: '22px' },
-              '@media(min-width: 960px)': { fontSize: 20, lineHeight: '24px', margin: theme.spacing(2, 0) },
-              display: 'flex',
-              flexDirection: 'column',
-              fontSize: 14,
-              padding: theme.spacing(1, 0),
-            }),
-            className,
-          )}
-        >
-          {children}
-        </div>
-      )}
-    </ClassNames>
+    <Zoom>
+      <ClassNames>
+        {({ theme, css, cx }) => (
+          <div
+            css={cx(
+              css({
+                ...theme.typography.body1,
+                '& > a': { color: theme.palette.text.primary, textDecoration: 'none' },
+                '& > a:hover': { textDecoration: 'underline' },
+                '& > p': { color: theme.palette.primary.main, fontWeight: theme.typography.fontWeightMedium },
+                '@media(min-width: 425px)': { fontSize: 16, lineHeight: '18px' },
+                '@media(min-width: 600px)': { fontSize: 18, lineHeight: '22px' },
+                '@media(min-width: 960px)': { fontSize: 20, lineHeight: '24px', margin: theme.spacing(2, 0) },
+                display: 'flex',
+                flexDirection: 'column',
+                fontSize: 14,
+                padding: theme.spacing(1, 0),
+              }),
+              className,
+            )}
+          >
+            {children}
+          </div>
+        )}
+      </ClassNames>
+    </Zoom>
   );
 };
 
