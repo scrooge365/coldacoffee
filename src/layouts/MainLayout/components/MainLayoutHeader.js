@@ -39,22 +39,29 @@ const MainLayoutHeader = () => {
       <div
         css={{ width: '100%', maxWidth: 1300, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
       >
-        <div
-          css={{
-            '& > img': { width: '100%', height: 'auto' },
-            '@media(min-width: 600px)': {
-              width: 54,
-              height: 54,
+        <Link
+          css={(theme) => ({
+            '& > img': {
+              '@media(min-width: 600px)': {
+                width: 54,
+                height: 54,
+              },
+              width: 48,
+              height: 48,
+              marginRight: theme.spacing(1),
             },
-            width: 48,
-            height: 48,
+            color: theme.palette.text.primary,
+            fontSize: 22,
+            textDecoration: 'none',
+            alignItems: 'center',
             display: 'flex',
-          }}
+          })}
+          to={intl.formatMessage({ id: 'paths.homepage', defaultMessage: '/en' })}
+          onClick={() => setOpen(false)}
         >
-          <Link to={intl.formatMessage({ id: 'paths.homepage', defaultMessage: '/en' })} onClick={() => setOpen(false)}>
-            <img src={logo} alt='logo' />
-          </Link>
-        </div>
+          <img src={logo} alt='logo' />
+          Kolda coffee
+        </Link>
         <HeaderHamburger open={open} onChange={() => setOpen((ps) => !ps)} />
       </div>
       <MainLayoutHeaderNavigation open={open} onClose={setOpen} />
@@ -146,18 +153,6 @@ const MainLayoutHeaderNavigation = ({ open, onClose: handleClose }) => {
   return (
     <div
       css={(theme) => ({
-        display: 'flex',
-        width: open ? '100%' : 0,
-        background: theme.palette.header.navigation,
-        position: 'fixed',
-        top: 72,
-        left: 0,
-        bottom: 0,
-        transition: 'all .2s ease',
-        overflow: 'hidden',
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        flexDirection: 'column',
         '& > a': {
           '&:link, &:visited': {
             display: 'inline-block',
@@ -179,6 +174,18 @@ const MainLayoutHeaderNavigation = ({ open, onClose: handleClose }) => {
             transform: 'translateX(1rem)',
           },
         },
+        display: 'flex',
+        width: open ? '100%' : 0,
+        background: theme.palette.header.navigation,
+        position: 'fixed',
+        top: 72,
+        left: 0,
+        bottom: 0,
+        transition: 'all .2s ease',
+        overflow: 'hidden',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+        flexDirection: 'column',
       })}
     >
       <div
@@ -214,18 +221,15 @@ const MainLayoutHeaderNavigation = ({ open, onClose: handleClose }) => {
         )}
       </div>
       <Link
+        to={intl.formatMessage({ id: 'paths.homepage', defaultMessage: '/en/homepage' })}
+        onClick={() => handleClose(false)}
+      >
+        Homepage
+      </Link>
+      <Link
         to={intl.formatMessage({ id: 'paths.contact', defaultMessage: '/en/contact' })}
         onClick={() => handleClose(false)}
       >
-        Contact
-      </Link>
-      <Link to='/' onClick={() => handleClose(false)}>
-        Contact
-      </Link>
-      <Link to='/' onClick={() => handleClose(false)}>
-        Contact
-      </Link>
-      <Link to='/' onClick={() => handleClose(false)}>
         Contact
       </Link>
     </div>

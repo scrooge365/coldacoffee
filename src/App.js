@@ -15,16 +15,10 @@ import { IntlProvider } from 'react-intl';
 import { messagesIntl } from './i18n';
 
 export default function App() {
-  const [locale, setLocale] = React.useState('cs');
   const location = useLocation();
   const supportedLocale = ['en', 'cs'];
-
-  React.useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const nextLocale = supportedLocale.find((i) => window?.location?.pathname.slice(1).startsWith(i));
-      setLocale((oldLocale) => nextLocale || oldLocale);
-    }
-  }, [location?.pathname]);
+  const loc = typeof window !== 'undefined' ? window.location : location;
+  const locale = supportedLocale.find((i) => loc?.pathname.slice(1).startsWith(i)) || 'cs';
 
   return (
     <AppProvider>

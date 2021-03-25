@@ -5,10 +5,12 @@ import PropTypes from 'prop-types';
 import Container from '../../../components/Container';
 import IconButton from '@material-ui/core/IconButton';
 import FacebookIcon from '../../../icons/Facebook';
+import { useIntl } from 'react-intl';
 // import InstagramIcon from '../../../icons/Instagram';
 // import YoutubeIcon from '../../../icons/Youtube';
 
 const MainLayoutFooter = () => {
+  const intl = useIntl();
   return (
     <footer>
       <ClassNames css={{}}>
@@ -32,10 +34,20 @@ const MainLayoutFooter = () => {
                   alignItems: 'flex-start',
                 }}
               >
-                <MainLayoutFooterCard title={'Contact us'}>
+                <MainLayoutFooterCard
+                  title={intl.formatMessage({
+                    id: 'footer.contact',
+                    defaultMessage: 'Contact us',
+                  })}
+                >
                   <a href='mailto:company@kolda.coffee'>company@kolda.coffee</a>
                 </MainLayoutFooterCard>
-                <MainLayoutFooterCard title={'Follow us'}>
+                <MainLayoutFooterCard
+                  title={intl.formatMessage({
+                    id: 'footer.social',
+                    defaultMessage: 'Follow us',
+                  })}
+                >
                   <div css={{ display: 'flex' }}>
                     <IconButton
                       href='https://www.facebook.com/koldacoffee'
@@ -58,7 +70,10 @@ const MainLayoutFooter = () => {
             <div css={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
               <img src={logo} alt='logo' />
               <p css={{ fontSize: 12, marginTop: theme.spacing(2) }}>
-                © 2021 Kolda coffee company s.r.o.. All rights reserved.
+                {intl.formatMessage({
+                  id: 'footer.copyright',
+                  defaultMessage: ` © 2021 Kolda coffee company s.r.o.. All rights reserved.`,
+                })}
               </p>
             </div>
           </div>
