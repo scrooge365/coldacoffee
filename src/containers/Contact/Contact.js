@@ -98,7 +98,7 @@ const Contact = ({ error }) => {
                   })}
                 </p>
                 <a href='phone:+420605382389'>+420 605 382 389</a>
-                <a href='mailto:radova@colda.coffee'>radova@colda.coffee</a>
+                <a href='mailto:radovan@colda.coffee'>radovan@colda.coffee</a>
               </ContactInfoContact>
               <ContactInfoContact>
                 <p>

@@ -224,13 +224,13 @@ const MainLayoutHeaderNavigation = ({ open, onClose: handleClose }) => {
         to={intl.formatMessage({ id: 'paths.homepage', defaultMessage: '/en/homepage' })}
         onClick={() => handleClose(false)}
       >
-        Homepage
+        {intl.formatMessage({ id: 'header.homepage', defaultMessage: 'Homepage' })}
       </Link>
       <Link
         to={intl.formatMessage({ id: 'paths.contact', defaultMessage: '/en/contact' })}
         onClick={() => handleClose(false)}
       >
-        Contact
+        {intl.formatMessage({ id: 'header.contact', defaultMessage: 'Contact' })}
       </Link>
     </div>
   );

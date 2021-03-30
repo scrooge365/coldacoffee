@@ -48,7 +48,7 @@ const MainLayoutFooter = () => {
                     defaultMessage: 'Follow us',
                   })}
                 >
-                  <div css={{ display: 'flex' }}>
+                  <div css={{ display: 'flex', marginTop: -8 }}>
                     <IconButton
                       href='https://www.facebook.com/koldacoffee'
                       rel='noreferrer'
@@ -69,7 +69,7 @@ const MainLayoutFooter = () => {
             </Container>
             <div css={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
               <img src={logo} alt='logo' />
-              <p css={{ fontSize: 12, marginTop: theme.spacing(2) }}>
+              <p css={{ fontSize: 12, marginTop: theme.spacing(2), textAlign: 'center' }}>
                 {intl.formatMessage({
                   id: 'footer.copyright',
                   defaultMessage: ` © 2021 Kolda coffee company s.r.o.. All rights reserved.`,
