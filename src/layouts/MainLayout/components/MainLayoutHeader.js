@@ -3,12 +3,12 @@
 import { jsx, ClassNames } from '@emotion/react';
 import PropTypes from 'prop-types';
 import React from 'react';
-import logo from '../../../images/logo.webp';
 import { Link, useLocation } from 'react-router-dom';
 import CzechFlag from '../../../icons/CzechFlag';
 import EnglishFlag from '../../../icons/EnglishFlag';
 import { Tooltip } from '@material-ui/core';
 import { useIntl } from 'react-intl';
+import Logo from '../../../icons/Logo';
 
 const MainLayoutHeader = () => {
   const intl = useIntl();
@@ -41,15 +41,6 @@ const MainLayoutHeader = () => {
       >
         <Link
           css={(theme) => ({
-            '& > img': {
-              '@media(min-width: 600px)': {
-                width: 54,
-                height: 54,
-              },
-              width: 48,
-              height: 48,
-              marginRight: theme.spacing(1),
-            },
             color: theme.palette.text.primary,
             fontSize: 22,
             textDecoration: 'none',
@@ -59,8 +50,16 @@ const MainLayoutHeader = () => {
           to={intl.formatMessage({ id: 'paths.homepage', defaultMessage: '/en' })}
           onClick={() => setOpen(false)}
         >
-          <img src={logo} alt='logo' />
-          Kolda coffee
+          <Logo
+            css={() => ({
+              '@media(min-width: 600px)': {
+                width: 140,
+                height: 54,
+              },
+              width: 120,
+              height: 48,
+            })}
+          />
         </Link>
         <HeaderHamburger open={open} onChange={() => setOpen((ps) => !ps)} />
       </div>

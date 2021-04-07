@@ -1,10 +1,10 @@
 /** @jsx jsx */
 import { ClassNames, jsx } from '@emotion/react';
-import logo from '../../../images/logo.webp';
 import PropTypes from 'prop-types';
 import Container from '../../../components/Container';
 import IconButton from '@material-ui/core/IconButton';
 import FacebookIcon from '../../../icons/Facebook';
+import FooterLogo from '../../../icons/FooterLogo';
 import { useIntl } from 'react-intl';
 // import InstagramIcon from '../../../icons/Instagram';
 // import YoutubeIcon from '../../../icons/Youtube';
@@ -68,7 +68,11 @@ const MainLayoutFooter = () => {
               </div>
             </Container>
             <div css={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-              <img src={logo} alt='logo' />
+              <FooterLogo
+                coffeeColor={'rgba(255,255,255, .4)'}
+                fontColor={theme.palette.common.white}
+                css={{ width: 80, height: 90 }}
+              />
               <p css={{ fontSize: 12, marginTop: theme.spacing(2), textAlign: 'center' }}>
                 {intl.formatMessage({
                   id: 'footer.copyright',

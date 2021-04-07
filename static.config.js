@@ -49,6 +49,10 @@ export default {
       <Head>
         <meta charSet='UTF-8' />
         <link rel='icon' href='/favicon.ico' />
+        <link rel='apple-touch-icon' sizes='180x180' href='/apple-touch-icon.png' />
+        <link rel='icon' type='image/png' sizes='32x32' href='/favicon-32x32.png' />
+        <link rel='icon' type='image/png' sizes='16x16' href='/favicon-16x16.png' />
+        <link rel='manifest' href='/site.webmanifest' />
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <meta name='application-name' content='Kolda coffee company' />
         <meta name='description' content='Kolda coffee producing 100% bio coffee products to all over the world.' />
@@ -57,7 +61,7 @@ export default {
       <Body>{children}</Body>
     </Html>
   ),
-  // siteRoot: 'http://kolda.coffee',
+  // siteRoot: 'https://kolda.coffee',
   maxThreads: 2,
   plugins: [
     [

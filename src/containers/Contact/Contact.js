@@ -98,7 +98,7 @@ const Contact = ({ error }) => {
                   })}
                 </p>
                 <a href='phone:+420605382389'>+420 605 382 389</a>
-                <a href='mailto:radovan@colda.coffee'>radovan@colda.coffee</a>
+                <a href='mailto:radovan@kolda.coffee'>radovan@kolda.coffee</a>
               </ContactInfoContact>
               <ContactInfoContact>
                 <p>
@@ -108,17 +108,17 @@ const Contact = ({ error }) => {
                   })}
                 </p>
                 <a href='phone:+420775171410'>+420 775 171 410</a>
-                <a href='mailto:kolar@colda.coffee'>kolar@colda.coffee</a>
+                <a href='mailto:kolar@kolda.coffee'>kolar@kolda.coffee</a>
               </ContactInfoContact>
               <ContactInfoContact>
                 <p>
                   {intl.formatMessage({
                     id: 'contact.techsupport',
-                    defaultMessage: `Technická podpora`,
+                    defaultMessage: `Marketing`,
                   })}
                 </p>
                 <a href='phone:+420739237900'>+420 739 237 900</a>
-                <a href='mailto:david@colda.coffee'>david@colda.coffee</a>
+                <a href='mailto:david@kolda.coffee'>david@kolda.coffee</a>
               </ContactInfoContact>
               <ContactInfoContact>
                 <p>
@@ -128,7 +128,7 @@ const Contact = ({ error }) => {
                   })}
                 </p>
                 <a href='phone:+420720165816'>+420 720 165 816</a>
-                <a href='mailto:bitala@colda.coffee'>bitala@colda.coffee</a>
+                <a href='mailto:bitala@kolda.coffee'>bitala@kolda.coffee</a>
               </ContactInfoContact>
               <ContactInfoContact
                 css={{

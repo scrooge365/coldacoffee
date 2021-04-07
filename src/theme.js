@@ -54,8 +54,8 @@ const theme = {
       navigation: 'rgba(53,26,17, .9)',
     },
     primary: {
-      dark: '#c93d02',
-      main: '#FC4C02',
+      dark: '#a94e02',
+      main: '#DB6503',
     },
     secondary: {
       dark: '#1b0d09',
