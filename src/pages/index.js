@@ -5,6 +5,6 @@ import { jsx } from '@emotion/react';
 
 export default () => {
   const setRedirect = useRedirect();
-  React.useEffect(() => setRedirect('/cs'), []);
+  React.useEffect(() => setRedirect('/en'), []);
   return <div css={{ textAlign: 'center' }} />;
 };

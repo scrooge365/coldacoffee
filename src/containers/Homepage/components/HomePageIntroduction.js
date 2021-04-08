@@ -48,7 +48,7 @@ function HomepageIntroduction() {
               </Pulse>
               <Fade bottom timeout={2000} delay={1000}>
                 <ButtonLink
-                  css={{ alignSelf: 'center' }}
+                  css={{ alignSelf: 'center', marginTop: theme.spacing(2) }}
                   to={intl.formatMessage({ id: 'paths.contact', defaultMessage: '/en/contact' })}
                 >
                   {intl.formatMessage({ id: 'homepage.introduction.button', defaultMessage: 'contact us' })}
