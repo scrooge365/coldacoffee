@@ -97,7 +97,7 @@ const Contact = ({ error }) => {
                     defaultMessage: `Obchod`,
                   })}
                 </p>
-                <a href='phone:+420605382389'>+420 605 382 389</a>
+                <a href='tel:+420605382389'>+420 605 382 389</a>
                 <a href='mailto:radovan@kolda.coffee'>radovan@kolda.coffee</a>
               </ContactInfoContact>
               <ContactInfoContact>
@@ -107,7 +107,7 @@ const Contact = ({ error }) => {
                     defaultMessage: `Farma`,
                   })}
                 </p>
-                <a href='phone:+420775171410'>+420 775 171 410</a>
+                <a href='tel:+420775171410'>+420 775 171 410</a>
                 <a href='mailto:kolar@kolda.coffee'>kolar@kolda.coffee</a>
               </ContactInfoContact>
               <ContactInfoContact>
@@ -117,7 +117,7 @@ const Contact = ({ error }) => {
                     defaultMessage: `Marketing`,
                   })}
                 </p>
-                <a href='phone:+420739237900'>+420 739 237 900</a>
+                <a href='tel:+420739237900'>+420 739 237 900</a>
                 <a href='mailto:david@kolda.coffee'>david@kolda.coffee</a>
               </ContactInfoContact>
               <ContactInfoContact>
@@ -127,7 +127,7 @@ const Contact = ({ error }) => {
                     defaultMessage: `Personální oddělení`,
                   })}
                 </p>
-                <a href='phone:+420720165816'>+420 720 165 816</a>
+                <a href='tel:+420720165816'>+420 720 165 816</a>
                 <a href='mailto:bitala@kolda.coffee'>bitala@kolda.coffee</a>
               </ContactInfoContact>
               <ContactInfoContact

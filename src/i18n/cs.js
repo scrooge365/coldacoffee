@@ -24,7 +24,7 @@ const messages = {
     'contact.title': 'Kontaktujte nás, máme zastoupení v několika zemích.',
     'contact.business': 'Obchod',
     'contact.pharm': 'Farma',
-    'contact.techsupport': 'Technická podpora',
+    'contact.techsupport': 'Marketing',
     'contact.personal': 'Personální oddělení',
     'contact.state': 'Česká republika',
     'contact.sro': 'Zapsaný v obchodním rejstříku, vedeném Městským soudem v Praze oddíl C, vložka 208765',
