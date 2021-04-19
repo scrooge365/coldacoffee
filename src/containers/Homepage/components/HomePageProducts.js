@@ -6,6 +6,7 @@ import { useIntl } from 'react-intl';
 import coffee from '../../../images/coffee.webp';
 import coffeeSmall from '../../../images/coffeeSmall.webp';
 import cascara from '../../../images/cascara.webp';
+import greencoffee from '../../../images/greencoffee.webp';
 import cascaraSmall from '../../../images/cascaraSmall.webp';
 import Zoom from 'react-reveal/Zoom';
 import HtmlParser from 'react-html-parser';
@@ -15,6 +16,12 @@ const products = [
     title: 'products.coffee.title',
     description: 'products.coffee.description',
     image: 'coffee',
+    imageSmall: 'coffeeSmall',
+  },
+  {
+    title: 'products.greencoffee.title',
+    description: 'products.greencoffee.description',
+    image: 'greencoffee',
     imageSmall: 'coffeeSmall',
   },
   {
@@ -29,6 +36,7 @@ const imageMap = {
   cascara,
   coffee,
   coffeeSmall,
+  greencoffee,
   cascaraSmall,
 };
 

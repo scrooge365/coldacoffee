@@ -34,6 +34,7 @@ function HomepageIntroduction() {
             <div
               css={{
                 '& > div:nth-of-type(2)': { alignSelf: 'center' },
+                '& > div': { display: 'flex', justifyContent: 'center' },
                 display: 'flex',
                 flexDirection: 'column',
               }}
@@ -42,11 +43,27 @@ function HomepageIntroduction() {
                 <h1 css={{ ...theme.typography.h1 }}>
                   {intl.formatMessage({
                     id: 'homepage.introduction.title',
-                    defaultMessage: 'Kolda coffee producing 100% bio coffee products to all over the world',
+                    defaultMessage: 'Jsme producenti výběrové kávy z Tanzánie',
                   })}
                 </h1>
               </Pulse>
               <Fade bottom timeout={2000} delay={1000}>
+                <div
+                  css={{
+                    ...theme.typography.h2,
+                    '@media(min-width: 960px)': { fontSize: 22 },
+                    color: theme.palette.text.primary,
+                    textTransform: 'none',
+                    fontWeight: theme.typography.fontWeightRegular,
+                  }}
+                >
+                  {intl.formatMessage({
+                    id: 'homepage.introduction.subtitle',
+                    defaultMessage: 'pestujeme na vlastnich plantazich',
+                  })}
+                </div>
+              </Fade>
+              <Fade bottom timeout={2000} delay={2000}>
                 <ButtonLink
                   css={{ alignSelf: 'center', marginTop: theme.spacing(2) }}
                   to={intl.formatMessage({ id: 'paths.contact', defaultMessage: '/en/contact' })}

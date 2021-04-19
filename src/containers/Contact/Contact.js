@@ -86,7 +86,7 @@ const Contact = ({ error }) => {
                 <Pulse>
                   {intl.formatMessage({
                     id: 'contact.title',
-                    defaultMessage: `Kontaktujte nás, máme zastoupení v několika zemích Evropy`,
+                    defaultMessage: `Kontaktujte nás`,
                   })}
                 </Pulse>
               </div>

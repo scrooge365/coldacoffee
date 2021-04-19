@@ -3,26 +3,35 @@ const messages = {
   en: {
     'paths.homepage': '/en',
     'paths.contact': '/en/contact',
-    'homepage.introduction.title': 'Kolda coffee producing 100% bio coffee products to all over the world',
+    'homepage.introduction.title': 'We produce premium coffee from Tanzania',
+    'homepage.introduction.subtitle': 'growing for you on our own 100ha fields at 1760m altitude.',
     'homepage.introduction.button': 'Contact us',
     'homepage.about.title': 'About us',
-    'homepage.about.description':
-      'In southern Tanzania, we have been producing and growing coffee since 2012. We currently operate two farms, Hezya and Mwaya.',
+    'homepage.about.description': 'We have established two coffee farms in southern Tanzania in 2012.',
     'header.cs': 'Czech',
     'header.en': 'English',
     'header.homepage': 'Homepage',
     'header.contact': 'Contact',
     'products.title': 'Products',
     'products.coffee.title': 'Coffee',
-    'products.coffee.description':
-      '<p>Harvest more than 20 tons</p><p>Producing only one species - Arabica</p><p>Two types of three plant - „Compact“ and „Nailon“</p><p>Two types coffee processing - "Washed or fully washed" and "Natural"</p>',
+    'products.coffee.description': `<p>More recipe types of highest quality roasted coffee.</p>
+      <p>Several variants of taste. From sour, smooth to bitter.</p>
+      <p>Individual coffee taste settings.</p>`,
+    'products.greencoffee.title': 'Green coffee Arabica',
+    'products.greencoffee.description': `
+      <p>We grow one type of coffee - Arabica.</p>
+      <p>Two types of coffee processing - "Washed / wet method" and "Dry method".</p>
+      <p>More than 20 tons of own production.</p>
+      `,
     'products.cascara.title': 'Cascara - "Coffee cherry"',
-    'products.cascara.description':
-      '<p>Is the actual flesh of the coffee cherry, that has been dried and is tasty to drink as an infusion. </p><p>Coffee is a cherry about the size of a cranberry. </p><p>This is the flesh that surrounds the coffee seeds which is normally a waste product or is sometimes used as a blender in fertilizer. </p><p>Historically people would drink the coffee pulp as an infusion, and it still occurs in some coffee producing countries around the world.</p>',
-    'contact.title': 'Contact us, We opperate in several countries.',
+    'products.cascara.description': `<p>It is the dried pulp of coffee cherry.</p>
+    <p>Cascara is ideal for infusion and drinking like coffee tea.</p>
+    <p>Historically, people drank coffee pulp as an infusion reminding rooibos tea.</p>
+    <p>It is the most often used in pharmaceuticals, cosmetics and in the food industry.</p>`,
+    'contact.title': 'Contact us',
     'contact.business': 'Business',
     'contact.pharm': 'Farm',
-    'contact.techsupport': 'Marketing',
+    'contact.techsupport': 'Eshop',
     'contact.personal': 'HR',
     'contact.state': 'Czech republic',
     'contact.sro':
