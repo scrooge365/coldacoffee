@@ -44,7 +44,7 @@ const Contact = ({ error }) => {
                   '& > svg': { width: 500, right: 0 },
                 },
                 '@media (min-width: 960px)': { '& > svg': { width: 800, right: 0 }, padding: theme.spacing(4, 6) },
-                '@media (min-width: 1180px)': { '& > svg': { maxHeight: 1200, right: 30 } },
+                '@media (min-width: 1180px)': { '& > svg': { transform: 'scale(1.2)', right: 30 } },
                 alignItems: 'flex-start',
                 display: 'flex',
                 flexDirection: 'column',
@@ -100,7 +100,7 @@ const Contact = ({ error }) => {
                 <a href='tel:+420605382389'>+420 605 382 389</a>
                 <a href='mailto:radovan@kolda.coffee'>radovan@kolda.coffee</a>
               </ContactInfoContact>
-              <ContactInfoContact>
+              <ContactInfoContact css={{ '@media(max-width: 959px)': { marginBottom: theme.spacing(17.5) } }}>
                 <p>
                   {intl.formatMessage({
                     id: 'contact.pharm',
@@ -110,32 +110,12 @@ const Contact = ({ error }) => {
                 <a href='tel:+420775171410'>+420 775 171 410</a>
                 <a href='mailto:kolar@kolda.coffee'>kolar@kolda.coffee</a>
               </ContactInfoContact>
-              <ContactInfoContact>
-                <p>
-                  {intl.formatMessage({
-                    id: 'contact.techsupport',
-                    defaultMessage: `Marketing`,
-                  })}
-                </p>
-                <a href='tel:+420739237900'>+420 739 237 900</a>
-                <a href='mailto:david@kolda.coffee'>david@kolda.coffee</a>
-              </ContactInfoContact>
-              <ContactInfoContact>
-                <p>
-                  {intl.formatMessage({
-                    id: 'contact.personal',
-                    defaultMessage: `Personální oddělení`,
-                  })}
-                </p>
-                <a href='tel:+420720165816'>+420 720 165 816</a>
-                <a href='mailto:bitala@kolda.coffee'>bitala@kolda.coffee</a>
-              </ContactInfoContact>
               <ContactInfoContact
                 css={{
                   '& img': { width: 120, margin: theme.spacing(2, 0) },
                   '@media (min-width: 425px)': { maxWidth: 250 },
                   '@media (min-width: 600px)': { marginTop: theme.spacing(6), maxWidth: 290 },
-                  '@media (min-width: 960px)': { maxWidth: 350, '& img': { width: 200 } },
+                  '@media (min-width: 960px)': { maxWidth: 350, '& img': { width: 200, top: 0 } },
                   fontSize: 11,
                   maxWidth: 200,
                 }}
@@ -192,7 +172,7 @@ const ContactInfoContact = ({ children, className }) => {
                 '& > p': { color: theme.palette.primary.main, fontWeight: theme.typography.fontWeightMedium },
                 '@media(min-width: 425px)': { fontSize: 16, lineHeight: '18px' },
                 '@media(min-width: 600px)': { fontSize: 18, lineHeight: '22px' },
-                '@media(min-width: 960px)': { fontSize: 20, lineHeight: '24px', margin: theme.spacing(2, 0) },
+                '@media(min-width: 960px)': { fontSize: 20, lineHeight: '24px', margin: theme.spacing(4, 0) },
                 display: 'flex',
                 flexDirection: 'column',
                 fontSize: 14,

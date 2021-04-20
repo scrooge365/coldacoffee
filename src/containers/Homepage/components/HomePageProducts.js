@@ -7,6 +7,7 @@ import coffee from '../../../images/coffee.webp';
 import coffeeSmall from '../../../images/coffeeSmall.webp';
 import cascara from '../../../images/cascara.webp';
 import greencoffee from '../../../images/greencoffee.webp';
+import greencoffeeSmall from '../../../images/greencoffee-small.webp';
 import cascaraSmall from '../../../images/cascaraSmall.webp';
 import Zoom from 'react-reveal/Zoom';
 import HtmlParser from 'react-html-parser';
@@ -22,7 +23,7 @@ const products = [
     title: 'products.greencoffee.title',
     description: 'products.greencoffee.description',
     image: 'greencoffee',
-    imageSmall: 'coffeeSmall',
+    imageSmall: 'greencoffeeSmall',
   },
   {
     title: 'products.cascara.title',
@@ -38,6 +39,7 @@ const imageMap = {
   coffeeSmall,
   greencoffee,
   cascaraSmall,
+  greencoffeeSmall,
 };
 
 function HomePageAbout() {
